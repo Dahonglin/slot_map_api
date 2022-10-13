@@ -27,10 +27,9 @@ export default {
   name: "KakaoMap",
   data() {
     return {
-      keyWord: "서울역 맛집",
+      keyWord: "맛집",
       markers: [],
       ps: "",
-      storeName: [],
       // infowindow: null,
       // map: "",
       // container: "",
@@ -60,21 +59,56 @@ export default {
       //지도 객체를 등록합니다.
       //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
       let map = new kakao.maps.Map(container, options);
-      this.marker = new kakao.maps.Marker({
-        position: map.getCenter(), // 지도의 중심좌표
-      });
-      this.marker.setMap(map);
+
+      // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+      if (navigator.geolocation) {
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude; // 위도
+          var lon = position.coords.longitude; // 경도
+          var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+          map.setCenter(locPosition);
+          let marker = new kakao.maps.Marker({
+            position: map.setCenter(locPosition), // 지도의 중심좌표
+          });
+          marker.setMap(map);
+        });
+      } else {
+        // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+        map.setCenter(locPosition);
+        let marker = new kakao.maps.Marker({
+          position: map.setCenter(locPosition), // 지도의 중심좌표
+        });
+        alert("위치 정보를 확인할 수 없습니다.");
+        marker.setMap(map);
+      }
     },
     keyWordSearch() {
       let markers = [];
       let mapContainer = document.getElementById("map"); // 지도를 표시할 div
       let mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 3, // 지도의 확대 레벨
       };
       // 지도를 생성합니다
       let map = new kakao.maps.Map(mapContainer, mapOption);
+      let keyWordTemp = this.keyWord;
 
+      // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+      if (navigator.geolocation) {
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var lat = position.coords.latitude; // 위도
+          var lon = position.coords.longitude; // 경도
+          var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+  
+          // 키워드로 장소를 검색합니다
+          searchPlaces(keyWordTemp, locPosition);
+        });
+      } else {
+        alert("위치 정보를 확인할 수 없습니다.");
+      }
       // 장소 검색 객체를 생성합니다
       let ps = new kakao.maps.services.Places();
 
@@ -82,18 +116,21 @@ export default {
       let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
       // 키워드로 장소를 검색합니다
-      searchPlaces(this.keyWord);
+      // searchPlaces(this.keyWord);
 
       // 키워드 검색을 요청하는 함수입니다
-      function searchPlaces(keyword) {
+      function searchPlaces(keyword, locPosition) {
         console.log("검색호출", keyword);
         if (!keyword.replace(/^\s+|\s+$/g, "")) {
           alert("키워드를 입력해주세요!");
           return false;
         }
-
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-        ps.keywordSearch(keyword, placesSearchCB);
+        ps.keywordSearch(keyword, placesSearchCB, {
+          radius: 500,
+          location: locPosition,
+        });
+        // console.log("위치정보:",locPosition);
       }
 
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -137,7 +174,7 @@ export default {
           // let ListTemp = [];
           bounds.extend(placePosition);
           storeList.push(places[i].place_name); // eslint-disable-line no-unused-vars
-          
+
           // 마커와 검색결과 항목에 mouseover 했을때
           // 해당 장소에 인포윈도우에 장소명을 표시합니다
           // mouseout 했을 때는 인포윈도우를 닫습니다
@@ -160,7 +197,8 @@ export default {
           })(marker, places[i].place_name);
           fragment.appendChild(itemEl);
         }
-        console.log(storeList);
+        // console.log(storeList);
+        storeListSave(storeList);
 
         // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
         listEl.appendChild(fragment);
@@ -198,6 +236,10 @@ export default {
         el.innerHTML = itemStr;
         el.className = "item";
         return el;
+      }
+
+      function storeListSave(storeList) {
+        console.log("테스트", storeList);
       }
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
@@ -275,9 +317,6 @@ export default {
           el.removeChild(el.lastChild);
         }
       }
-    },
-    storeList(storeList) {
-      console.log("테스트",storeList);
     },
   },
 };
