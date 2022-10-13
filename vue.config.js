@@ -3,6 +3,6 @@ const {
 } = require('@vue/cli-service')
 module.exports = defineConfig({
   outputDir: './docs',
-  publicPath: '/<repository name>/'
+  publicPath: '/slot_map_api/'
   // transpileDependencies: true
 })
