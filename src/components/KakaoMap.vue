@@ -1,21 +1,42 @@
 <template>
   <div class="map_wrap">
+    <!-- 결과값 모달창 -->
+    <div class="modal" :class="{ display: resultPopup }">
+      <div class="black_bg">
+        <div class="white_bg">
+          <h4>🔔 도착한 점심 메뉴는?</h4>
+          <div class="resultMenu">
+            <div>
+              <ul id="StoreNameList"></ul>
+            </div>
+            <div id="pickMenu"></div>
+          </div>
+          <button class="btn btn-danger btn" @click="closeWindow(0)">
+            창 닫기
+          </button>
+        </div>
+      </div>
+    </div>
     <div id="map"></div>
-    <input
-      type="text"
-      class="col form-control"
-      v-model.trim="keyWord"
-      @keyup.enter="keyWordSearch"
-    />
-    <button
-      type="submit"
-      class="col col-lg-2 btn-success"
-      @click="keyWordSearch"
-    >
-      검색
-    </button>
-    <hr />
-    <div id="menu_wrap" class="bg_white">
+    <div>
+      <input
+        type="text"
+        class="col form-control"
+        v-model.trim="keyWord"
+        @keyup.enter="keyWordSearch"
+      />
+      <button
+        type="submit"
+        class="col col-lg-2 btn-success"
+        @click="keyWordSearch"
+      >
+        검색
+      </button>
+      <button class="btn btn-danger btn" @click="closeWindow(1)">
+        메뉴 발사
+      </button>
+    </div>
+    <div id="menu_wrap">
       <ul id="placesList"></ul>
       <div id="pagination"></div>
     </div>
@@ -28,12 +49,8 @@ export default {
   data() {
     return {
       keyWord: "맛집",
-      markers: [],
-      ps: "",
-      // infowindow: null,
-      // map: "",
-      // container: "",
-      // options: "",
+      resultPopup: 0,
+      oldStoreList: {},
     };
   },
   mounted() {
@@ -45,7 +62,7 @@ export default {
       script.onload = () => kakao.maps.load(this.initMap);
       script.src =
         "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=1979f702d77ea0046b74ea7bdfbea8df&libraries=services";
-      document.head.appendChild(script);
+      document.body.appendChild(script);
     }
   },
   methods: {
@@ -83,7 +100,7 @@ export default {
         });
         alert("위치 정보를 확인할 수 없습니다.");
         marker.setMap(map);
-         this.keyWordSearch();
+        this.keyWordSearch();
       }
     },
     keyWordSearch() {
@@ -104,7 +121,7 @@ export default {
           var lat = position.coords.latitude; // 위도
           var lon = position.coords.longitude; // 경도
           var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-  
+
           // 키워드로 장소를 검색합니다
           searchPlaces(keyWordTemp, locPosition);
         });
@@ -117,9 +134,6 @@ export default {
       // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
       let infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
-      // 키워드로 장소를 검색합니다
-      // searchPlaces(this.keyWord);
-
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces(keyword, locPosition) {
         console.log("검색호출", keyword);
@@ -129,10 +143,9 @@ export default {
         }
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
         ps.keywordSearch(keyword, placesSearchCB, {
-          radius: 500,
+          radius: 700,
           location: locPosition,
         });
-        // console.log("위치정보:",locPosition);
       }
 
       // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -141,12 +154,15 @@ export default {
           // 정상적으로 검색이 완료됐으면
           // 검색 목록과 마커를 표출합니다
           displayPlaces(data);
+          storeListSave(data);
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+          displayPlaces(data);
           alert("검색 결과가 존재하지 않습니다.");
           return;
         } else if (status === kakao.maps.services.Status.ERROR) {
+          displayPlaces(data);
           alert("검색 결과 중 오류가 발생했습니다.");
           return;
         }
@@ -176,7 +192,6 @@ export default {
           // let ListTemp = [];
           bounds.extend(placePosition);
           storeList.push(places[i].place_name); // eslint-disable-line no-unused-vars
-
           // 마커와 검색결과 항목에 mouseover 했을때
           // 해당 장소에 인포윈도우에 장소명을 표시합니다
           // mouseout 했을 때는 인포윈도우를 닫습니다
@@ -199,8 +214,6 @@ export default {
           })(marker, places[i].place_name);
           fragment.appendChild(itemEl);
         }
-        // console.log(storeList);
-        storeListSave(storeList);
 
         // 검색결과 항목들을 검색결과 목록 Element에 추가합니다
         listEl.appendChild(fragment);
@@ -226,14 +239,15 @@ export default {
             "    <span>" +
             places.road_address_name +
             "</span>" +
-            '   <span class="jibun gray">' +
+            '   <span class="jibun gray"> 🏠 : ' +
             places.address_name +
             "</span>";
         } else {
           itemStr += "    <span>" + places.address_name + "</span>";
         }
 
-        itemStr += '  <span class="tel">' + places.phone + "</span>" + "</div>";
+        itemStr +=
+          '  <span class="tel"> 📞 : ' + places.phone + "</span>" + "</div>";
 
         el.innerHTML = itemStr;
         el.className = "item";
@@ -241,7 +255,41 @@ export default {
       }
 
       function storeListSave(storeList) {
-        console.log("테스트", storeList);
+        let StoreNameList = document.getElementById("StoreNameList");
+        let pickMenu = document.getElementById("pickMenu");
+        let storeName = [];
+        let Storetemp = ""; //임시 변수 선언 + 초기화
+        for (let i = 0; i < storeList.length; i++) {
+          storeName.push(storeList[i].place_name); // eslint-disable-line no-unused-vars
+        }
+        // console.log("식당 리스트 출력", storeName);
+        for (let x in storeName) {
+          Storetemp += `<li>${storeName[x]}</li>`; // eslint-disable-line no-unused-vars
+        }
+        StoreNameList.innerHTML = Storetemp;
+        pickMenu.innerText = storePick(storeList);
+      }
+      function storePick(storeList){
+        let prePicked = storeList;
+        let picked = [];
+        if (storeList.length > 1) {
+          // 랜덤 추첨
+          let random = Math.floor(Math.random() * storeList.length);
+          // 이전 값과 같으면 다를 때까지 계속 랜덤 수 생성
+          while (random === prePicked) {
+            random = Math.floor(Math.random() * storeList.length);
+          }
+          // 이전 숫자에 현재 랜덤 수 더해줌
+          prePicked = random;
+          // 추첨 완료
+          picked = storeList[random];
+        } else {
+          //메뉴가 없거나 2개 미만인 경우
+          window.alert(
+            "발사가 중지 되었습니다! \n메뉴를 추가 하시거나, 첫 리스트로 초기화 해주세요."
+          );
+        }
+        return picked.place_name;
       }
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
@@ -319,6 +367,11 @@ export default {
           el.removeChild(el.lastChild);
         }
       }
+    },
+    // 팝업 모달창 컨트롤
+    closeWindow(val) {
+      this.resultPopup = val;
+      this.keyWordSearch();
     },
   },
 };
