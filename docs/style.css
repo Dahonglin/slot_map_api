@@ -1,53 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
 * {
   list-style: none;
   box-sizing: border-box;
+  margin: 0;
 }
+
 #app {
   font-size: 15px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
 }
+
+.TopTitle {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 25vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(136, 0, 255), rgb(119, 0, 255));
+  flex-direction: column;
+}
+
+.TopTitle h1 {
+  padding: 0;
+  margin: 0;
+  font-family: 'Do Hyeon', sans-serif;
+  color: #fff;
+  font-size: 45px;
+}
+
+.TopTitle h2 {
+  padding: 0;
+  font-family: 'Do Hyeon', sans-serif;
+  color: #fff;
+  font-size: 22px;
+  font-weight: normal;
+  padding-bottom: 10vh;
+}
+
+.nyamnyam {
+  color:gold;
+}
+
 .map_wrap,
 .map_wrap * {
   margin: 0;
   padding: 0;
   font-family: "Malgun Gothic", dotum, "돋움", sans-serif;
-  font-size: 12px;
+  font-size: 13px;
 }
+
 .map_wrap a,
 .map_wrap a:hover,
 .map_wrap a:active {
   color: #000;
   text-decoration: none;
 }
+
 .map_wrap {
-  position: relative;
+  display: flex;
   width: 100%;
-  height: 500px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
 }
+
 #map {
-  width: 100%;
+  width: 80%;
   height: 500px;
+  margin-top: 15vh;
+  text-align: center;
+  border: 3px solid #ddd;
+  border-radius: 20px;
+  z-index: 1;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
+
 #menu_wrap {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 250px;
-  margin: 10px 0 30px 10px;
-  padding: 5px;
+  width: 80%;
   overflow-y: auto;
-  background: rgba(255, 255, 255, 0.8);
-  z-index: 1;
   font-size: 12px;
-  border-radius: 10px;
 }
-.bg_white {
-  background: #fff;
-}
+
 #menu_wrap hr {
   display: block;
   height: 1px;
@@ -55,21 +100,26 @@
   border-top: 2px solid #5f5f5f;
   margin: 3px 0;
 }
+
 #menu_wrap .option {
   text-align: center;
 }
+
 #menu_wrap .option p {
   margin: 10px 0;
 }
+
 #menu_wrap .option button {
   margin-left: 5px;
 }
+
 ul#placesList li.item {
   display: flex;
   flex-direction: row;
   justify-content: center;
   border-bottom: 1px dotted #999;
 }
+
 #placesList li .item {
   text-align: center;
   border-bottom: 1px solid #888;
@@ -79,94 +129,261 @@ ul#placesList li.item {
 }
 
 #placesList .item .info {
-    width: 250px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5px;
-    text-align: left;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+  text-align: left;
 }
 
 #placesList .item .info h5 {
-font-size: 14px;
-padding: 3px 0 3px 0;
+  font-size: 14px;
+  padding-right: 10px;
+  content: " ";
+}
+
+#placesList .item .info h5::after {
+  content: " : ";
+  color: #777;
 }
 
 #placesList .info .gray {
   color: #8a8a8a;
 }
+
 #placesList .info .jibun {
-  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-    no-repeat;
-    padding-left: 25px;
+  padding-left: 10px;
 }
+
 #placesList .info .tel {
   color: #009900;
+  padding-left: 10px;
+  font-weight: bold;
 }
+
 #placesList .item .markerbg {
   float: left;
   width: 36px;
   height: 37px;
   margin: 15px 10px 10px 0px;
-  background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+  background: url(./marker_number_rocket.png)
     no-repeat;
 }
+
 #placesList .item .marker_1 {
   background-position: 0 -10px;
 }
+
 #placesList .item .marker_2 {
   background-position: 0 -56px;
 }
+
 #placesList .item .marker_3 {
   background-position: 0 -102px;
 }
+
 #placesList .item .marker_4 {
   background-position: 0 -148px;
 }
+
 #placesList .item .marker_5 {
   background-position: 0 -194px;
 }
+
 #placesList .item .marker_6 {
   background-position: 0 -240px;
 }
+
 #placesList .item .marker_7 {
   background-position: 0 -286px;
 }
+
 #placesList .item .marker_8 {
   background-position: 0 -332px;
 }
+
 #placesList .item .marker_9 {
   background-position: 0 -378px;
 }
+
 #placesList .item .marker_10 {
   background-position: 0 -423px;
 }
+
 #placesList .item .marker_11 {
   background-position: 0 -470px;
 }
+
 #placesList .item .marker_12 {
   background-position: 0 -516px;
 }
+
 #placesList .item .marker_13 {
   background-position: 0 -562px;
 }
+
 #placesList .item .marker_14 {
   background-position: 0 -608px;
 }
+
 #placesList .item .marker_15 {
   background-position: 0 -654px;
 }
+
 #pagination {
   margin: 10px auto;
   text-align: center;
 }
+
 #pagination a {
   display: inline-block;
   margin-right: 10px;
 }
+
 #pagination .on {
   font-weight: bold;
   cursor: default;
   color: rgb(0, 66, 181);
+}
+
+.modal {
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 0;
+}
+
+.modal.display {
+  display: inline;
+}
+
+.black_bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  padding: 20px;
+  text-align: center;
+  z-index: 2;
+}
+
+.white_bg {
+  width: 60%;
+  min-width: 300px;
+  height: 250px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.white_bg h4 {
+  width: 100%;
+  min-width: 500px;
+}
+
+.resultMenu {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 70px;
+  font-size: 45px;
+  font-weight: bold;
+  z-index: 9;
+}
+
+.resultMenu div {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* 슬롯리스트 */
+.resultMenu #StoreNameList {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  background: #fff;
+  animation: slide .7s step-end forwards;
+}
+
+#StoreNameList li, #pickMenu {
+  font-size: 45px;
+}
+
+/* 실제 결과값 */
+.resultMenu h1:nth-child(2) {
+  position: absolute;
+  opacity: 0;
+  animation: appear 0.5s step-start .7s forwards;
+}
+
+/* 슬롯애니 */
+@keyframes slide {
+  0% {
+    transform: translateY(0);
+  }
+
+  10% {
+    transform: translateY(-10%);
+  }
+
+  20% {
+    transform: translateY(-20%);
+  }
+
+  30% {
+    transform: translateY(-30%);
+  }
+
+  40% {
+    transform: translateY(-40%);
+  }
+
+  50% {
+    transform: translateY(-50%);
+  }
+
+  60% {
+    transform: translateY(-60%);
+  }
+
+  70% {
+    transform: translateY(-70%);
+  }
+
+  80% {
+    transform: translateY(-80%);
+  }
+
+  90% {
+    transform: translateY(-90%);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  100% {
+    opacity: 1;
+  }
 }
