@@ -16,21 +16,23 @@
       </div>
     </div>
     <div id="map"></div>
-    <div>
-      <input
-        type="text"
-        class="col form-control"
-        v-model.trim="keyWord"
-        @keyup.enter="keyWordSearch"
-      />
-      <button
-        type="submit"
-        class="col col-lg-2 btn-success"
-        @click="keyWordSearch"
-      >
-        검색
-      </button>
-      <button id="SlotBtn" class="btn btn-danger btn">메뉴 발사</button>
+    <div id="SearchForm">
+      <div id="inputForm">
+        <input
+          type="text"
+          class="form-control"
+          v-model.trim="keyWord"
+          @keyup.enter="keyWordSearch"
+        />
+        <button
+          type="submit"
+          class="btn btn-success"
+          @click="keyWordSearch"
+        >
+          검색
+        </button>
+      </div>
+      <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
     <div id="menu_wrap">
       <ul id="placesList"></ul>
@@ -47,6 +49,7 @@ export default {
       keyWord: "맛집",
     };
   },
+  components: {},
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
