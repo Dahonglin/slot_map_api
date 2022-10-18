@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TopTitle />
-    <KakaoMap />
+    <SlotLuncher />
     <!-- <HelloWorld /> -->
   </div>
 </template>
@@ -9,13 +9,13 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
 import TopTitle from "./components/TopTitle";
-import KakaoMap from "./components/KakaoMap";
+import SlotLuncher from "./components/SlotLuncher";
 
 export default {
   name: "App",
   components: {
     TopTitle,
-    KakaoMap,
+    SlotLuncher,
     // HelloWorld,
   },
 };
