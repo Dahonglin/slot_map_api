@@ -24,11 +24,7 @@
           v-model.trim="keyWord"
           @keyup.enter="keyWordSearch"
         />
-        <button
-          type="submit"
-          class="btn btn-success"
-          @click="keyWordSearch"
-        >
+        <button type="submit" class="btn btn-success" @click="keyWordSearch">
           검색
         </button>
       </div>
@@ -133,7 +129,6 @@ export default {
 
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces(keyword, locPosition) {
-        console.log("검색호출", keyword);
         if (!keyword.replace(/^\s+|\s+$/g, "")) {
           alert("키워드를 입력해주세요!");
           return false;
@@ -155,13 +150,16 @@ export default {
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-          displayPlaces(data);
           alert("검색 결과가 존재하지 않습니다.");
-          return;
-        } else if (status === kakao.maps.services.Status.ERROR) {
+          // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
+          // window.location.reload(true);
+          // return;
           displayPlaces(data);
+        } else if (status === kakao.maps.services.Status.ERROR) {
           alert("검색 결과 중 오류가 발생했습니다.");
-          return;
+          // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
+          window.location.reload(true);
+          // return;
         }
       }
 
@@ -186,7 +184,6 @@ export default {
           let itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
-          // let ListTemp = [];
           bounds.extend(placePosition);
           storeList.push(places[i].place_name); // eslint-disable-line no-unused-vars
           // 마커와 검색결과 항목에 mouseover 했을때
@@ -259,10 +256,10 @@ export default {
         let Storetemp = ""; //임시 변수 선언 + 초기화
 
         for (let i = 0; i < storeList.length; i++) {
-          storeName.push(storeList[i].place_name); // eslint-disable-line no-unused-vars
+          storeName.push(storeList[i].place_name); 
         }
         for (let x in storeName) {
-          Storetemp += `<li>${storeName[x]}</li>`; // eslint-disable-line no-unused-vars
+          Storetemp += `<li>${storeName[x]}</li>`; 
         }
         StoreNameList.innerHTML = Storetemp;
 
@@ -282,7 +279,7 @@ export default {
           modalWindow.className = "modal";
         };
       }
-
+      // 식당 목록 중 당첨 추첨
       function storePick(storeList) {
         let prePicked = storeList;
         let picked = [];
