@@ -544,16 +544,16 @@ ul#placesList li.item {
 @media all and (max-width: 767px) {
   .TopTitle {
     height: 40vh;
+    justify-content: flex-start;
+    padding-top: 7vh;
   }
   .TopTitle h1 {
-    padding-top: 2vh;
   }
   .TopTitle h3 {
-    padding-bottom: 22vh;
     line-height: 15px;
   }
   #map{
-    margin-top :18vh;
+    margin-top :25vh;
     height: 400px;
   }
 
