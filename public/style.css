@@ -571,6 +571,7 @@ ul#placesList li.item {
     font-size: 15px;
   }
   .resultMenu {
+    width: 300px;
     height: 100%;
     align-items: center;
     flex-direction: column;
