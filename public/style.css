@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
 * {
   list-style: none;
@@ -24,29 +24,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(136, 0, 255), rgb(119, 0, 255));
+  background: linear-gradient(
+    to bottom right,
+    rgba(136, 0, 255),
+    rgb(179, 0, 255)
+  );
   flex-direction: column;
 }
 
 .TopTitle h1 {
   padding: 0;
   margin: 0;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   color: #fff;
   font-size: 45px;
 }
 
 .TopTitle h2 {
   padding: 0;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   color: #fff;
   font-size: 22px;
   font-weight: normal;
-  padding-bottom: 10vh;
+}
+.TopTitle h3 {
+  font-size: 18px;
+  font-family: "Do Hyeon", sans-serif;
+  color: #fff;
+  padding-bottom: 8vh;
 }
 
 .nyamnyam {
-  color:gold;
+  color: gold;
 }
 
 #SearchForm {
@@ -54,26 +63,44 @@
   width: 80%;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 #inputForm {
   display: flex;
-  width: 70%;
-  margin: 20px 0 30px 0;
-}
-#inputForm input.form-control {
-  width: 80%;
-  margin-right: 20px;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  justify-content: center;
 }
 
-.btn-success {
-  width: 20%;
+#inputForm .btn.btn-success {
+  background: rgba(136, 0, 255);
+  border-color: rgba(136, 0, 255);
+  margin-right: 10px;
+}
+
+#inputForm .btn.btn-success:nth-child(even) {
+  background: rgb(255, 83, 169);
+  border-color: rgb(255, 83, 169);
+}
+
+#inputForm .btn.btn-success:last-child {
+  margin-right: 0px;
 }
 
 #SlotBtn {
   width: 30%;
   font-size: 20px;
   font-weight: bold;
+}
+
+#SlotBtn.btn.btn-danger {
+  background: linear-gradient(
+    to bottom right,
+    rgba(136, 0, 255),
+    rgb(179, 0, 255)
+  );
+  border-color: rgba(136, 0, 255);
 }
 
 .map_wrap,
@@ -195,8 +222,7 @@ ul#placesList li.item {
   width: 36px;
   height: 37px;
   margin: 15px 10px 10px 0px;
-  background: url(./marker_number_rocket.png)
-    no-repeat;
+  background: url(./marker_number_rocket.png) no-repeat;
 }
 
 #placesList .item .marker_1 {
@@ -348,10 +374,11 @@ ul#placesList li.item {
   position: absolute;
   z-index: 1;
   background: #fff;
-  animation: slide .7s step-end forwards;
+  animation: slide 0.7s step-end forwards;
 }
 
-#StoreNameList li, #pickMenu {
+#StoreNameList li,
+#pickMenu {
   font-size: 45px;
 }
 
@@ -359,7 +386,7 @@ ul#placesList li.item {
 .resultMenu h1:nth-child(2) {
   position: absolute;
   opacity: 0;
-  animation: appear 0.5s step-start .7s forwards;
+  animation: appear 0.5s step-start 0.7s forwards;
 }
 
 /* 슬롯애니 */

@@ -18,15 +18,16 @@
     <div id="map"></div>
     <div id="SearchForm">
       <div id="inputForm">
-        <input
-          type="text"
-          class="form-control"
-          v-model.trim="keyWord"
-          @keyup.enter="keyWordSearch"
-        />
-        <button type="submit" class="btn btn-success" @click="keyWordSearch">
-          검색
-        </button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('맛집')" value="맛집">맛집</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('한식')" value="한식">한식</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('양식')" value="양식">양식</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('중식')" value="중식">중식</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('일식')" value="일식">일식</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('분식')" value="일식">분식</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('치킨')" value="치킨">치킨</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('피자')" value="피자">피자</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('술집')" value="술집">술집</button>
+        <button class="btn btn-success" type="button" @click="keyWordSearch('편의점')" value="편의점">편의점</button>
       </div>
       <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
@@ -42,7 +43,7 @@ export default {
   name: "KakaoMap",
   data() {
     return {
-      keyWord: "맛집",
+      keyWord: "",
     };
   },
   components: {},
@@ -83,7 +84,7 @@ export default {
           });
           marker.setMap(map);
         });
-        this.keyWordSearch();
+        this.keyWordSearch("맛집");
       } else {
         // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
         var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
@@ -93,10 +94,11 @@ export default {
         });
         alert("위치 정보를 확인할 수 없습니다.");
         marker.setMap(map);
-        this.keyWordSearch();
+        this.keyWordSearch("맛집");
       }
     },
-    keyWordSearch() {
+    keyWordSearch(val) {
+      console.log("눌림", val);
       let markers = [];
       let mapContainer = document.getElementById("map"); // 지도를 표시할 div
       let mapOption = {
@@ -105,7 +107,8 @@ export default {
       };
       // 지도를 생성합니다
       let map = new kakao.maps.Map(mapContainer, mapOption);
-      let keyWordTemp = this.keyWord;
+      // let keyWordTemp = this.keyWord;
+      let keyWordTemp = val;
 
       // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
       if (navigator.geolocation) {
@@ -150,9 +153,11 @@ export default {
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-          alert("검색 결과가 존재하지 않습니다.");
+          alert(
+            "검색 결과가 존재하지 않습니다.\n다른 키워드로 검색 해주세요."
+          );
           // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
-          // window.location.reload(true);
+          window.location.reload(true);
           // return;
           displayPlaces(data);
         } else if (status === kakao.maps.services.Status.ERROR) {
@@ -256,10 +261,10 @@ export default {
         let Storetemp = ""; //임시 변수 선언 + 초기화
 
         for (let i = 0; i < storeList.length; i++) {
-          storeName.push(storeList[i].place_name); 
+          storeName.push(storeList[i].place_name);
         }
         for (let x in storeName) {
-          Storetemp += `<li>${storeName[x]}</li>`; 
+          Storetemp += `<li>${storeName[x]}</li>`;
         }
         StoreNameList.innerHTML = Storetemp;
 
