@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
 
 * {
   list-style: none;
@@ -24,29 +24,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(rgba(136, 0, 255), rgb(119, 0, 255));
+  background: linear-gradient(
+    to bottom right,
+    rgba(136, 0, 255),
+    rgb(179, 0, 255)
+  );
   flex-direction: column;
 }
 
 .TopTitle h1 {
   padding: 0;
   margin: 0;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   color: #fff;
   font-size: 45px;
 }
 
 .TopTitle h2 {
   padding: 0;
-  font-family: 'Do Hyeon', sans-serif;
+  font-family: "Do Hyeon", sans-serif;
   color: #fff;
   font-size: 22px;
   font-weight: normal;
-  padding-bottom: 10vh;
+}
+.TopTitle h3 {
+  font-size: 18px;
+  font-family: "Do Hyeon", sans-serif;
+  color: #fff;
+  padding-bottom: 8vh;
 }
 
 .nyamnyam {
-  color:gold;
+  color: gold;
 }
 
 #SearchForm {
@@ -54,26 +63,44 @@
   width: 80%;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 #inputForm {
   display: flex;
-  width: 70%;
-  margin: 20px 0 30px 0;
-}
-#inputForm input.form-control {
-  width: 80%;
-  margin-right: 20px;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  justify-content: center;
 }
 
-.btn-success {
-  width: 20%;
+#inputForm .btn.btn-success {
+  background: rgba(136, 0, 255);
+  border-color: rgba(136, 0, 255);
+  margin-right: 10px;
+}
+
+#inputForm .btn.btn-success:nth-child(even) {
+  background: rgb(255, 83, 169);
+  border-color: rgb(255, 83, 169);
+}
+
+#inputForm .btn.btn-success:last-child {
+  margin-right: 0px;
 }
 
 #SlotBtn {
   width: 30%;
   font-size: 20px;
   font-weight: bold;
+}
+
+#SlotBtn.btn.btn-danger {
+  background: linear-gradient(
+    to bottom right,
+    rgba(136, 0, 255),
+    rgb(179, 0, 255)
+  );
+  border-color: rgba(136, 0, 255);
 }
 
 .map_wrap,
@@ -116,8 +143,12 @@
   left: 0;
   bottom: 0;
   width: 80%;
+  min-width: 900px;
   overflow-y: auto;
   font-size: 12px;
+  border-radius: 15px;
+  border: 3px solid #ddd;
+  margin-bottom: 3vh;
 }
 
 #menu_wrap hr {
@@ -155,6 +186,10 @@ ul#placesList li.item {
   min-height: 65px;
 }
 
+#placesList li.item:nth-child(even) {
+  background: #eee;
+}
+
 #placesList .item .info {
   width: 100%;
   overflow: hidden;
@@ -166,8 +201,10 @@ ul#placesList li.item {
 }
 
 #placesList .item .info h5 {
-  font-size: 14px;
+  font-size: 16px;
+  color: #222;
   padding-right: 10px;
+  font-weight: bold;
   content: " ";
 }
 
@@ -176,8 +213,8 @@ ul#placesList li.item {
   color: #777;
 }
 
-#placesList .info .gray {
-  color: #8a8a8a;
+#placesList .info {
+  color: #777;
 }
 
 #placesList .info .jibun {
@@ -185,8 +222,12 @@ ul#placesList li.item {
 }
 
 #placesList .info .tel {
-  color: #009900;
   padding-left: 10px;
+}
+
+#placesList .info .tel a {
+  color: rgb(174, 0, 213);
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -194,9 +235,8 @@ ul#placesList li.item {
   float: left;
   width: 36px;
   height: 37px;
-  margin: 15px 10px 10px 0px;
-  background: url(./marker_number_rocket.png)
-    no-repeat;
+  margin: 15px 10px 10px 5px;
+  background: url(./marker_number_rocket.png) no-repeat;
 }
 
 #placesList .item .marker_1 {
@@ -266,6 +306,7 @@ ul#placesList li.item {
 
 #pagination a {
   display: inline-block;
+  font-size: 14px;
   margin-right: 10px;
 }
 
@@ -310,12 +351,16 @@ ul#placesList li.item {
   display: grid;
   align-content: center;
   justify-content: center;
+  justify-items: center;
   z-index: 2;
 }
 
 .white_bg h4 {
   width: 100%;
   min-width: 500px;
+  font-size: 22px;
+  font-weight: bold;
+  padding-bottom: 5px;
 }
 
 .resultMenu {
@@ -348,18 +393,25 @@ ul#placesList li.item {
   position: absolute;
   z-index: 1;
   background: #fff;
-  animation: slide .7s step-end forwards;
+  animation: slide 0.7s step-end forwards;
 }
 
-#StoreNameList li, #pickMenu {
-  font-size: 45px;
+#StoreNameList li,
+#pickMenu {
+  font-size: 60px;
+  font-family: "Do Hyeon", sans-serif;
+  font-weight: normal;
 }
 
 /* 실제 결과값 */
 .resultMenu h1:nth-child(2) {
   position: absolute;
   opacity: 0;
-  animation: appear 0.5s step-start .7s forwards;
+  animation: appear 0.5s step-start 0.7s forwards;
+}
+
+#CloseBtn {
+  width: 30%;
 }
 
 /* 슬롯애니 */
@@ -412,5 +464,132 @@ ul#placesList li.item {
 @keyframes appear {
   100% {
     opacity: 1;
+  }
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  #inputForm {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #inputForm .btn.btn-success {
+    margin: 5px;
+  }
+  .white_bg {
+    width: 70%;
+  }
+  .white_bg h4 {
+    font-size: 19px;
+  }
+  #StoreNameList li,
+  #pickMenu {
+    font-size: 52px;
+  }
+  #SlotBtn {
+    width: 300px;
+  }
+  #menu_wrap {
+    width: 400px;
+    min-width: 10%;
+  }
+
+  #placesList .item .info {
+    width: 100%;
+    flex-direction: column;
+  }
+  #placesList .item .info h5 {
+    font-size: 18px;
+  }
+  #placesList .item .info h5::after {
+    content: "";
+  }
+  #placesList .info .jibun {
+    padding-left: 0px;
+  }
+  #placesList .info .tel {
+    padding-left: 0px;
+  }
+  #placesList .info .tel a {
+    font-size: 14px;
+  }
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  #inputForm {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  #inputForm .btn.btn-success {
+    margin: 5px;
+  }
+  .white_bg {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+  }
+  .white_bg h4 {
+    font-size: 15px;
+  }
+  .resultMenu {
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+  }
+
+  .resultMenu #StoreNameList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  #StoreNameList li,
+  #pickMenu {
+    width: 70%;
+    font-size: 40px;
+    line-height: 40px;
+    word-break: keep-all;
+    
+  }
+
+  #pickMenu {
+    position: relative;
+    top:-10px;
+    width: 70%;
+    height: 100px;
+    vertical-align: middle;
+    line-height: 40px;
+    word-break: keep-all;
+  }
+  #SlotBtn {
+    width: 300px;
+  }
+  #menu_wrap {
+    width: 380px;
+    min-width: 10%;
+  }
+
+  #placesList .item .info {
+    width: 100%;
+    flex-direction: column;
+  }
+  #placesList .item .info h5 {
+    font-size: 18px;
+  }
+  #placesList .item .info h5::after {
+    content: "";
+  }
+  #placesList .info .jibun {
+    padding-left: 0px;
+  }
+  #placesList .info .tel {
+    padding-left: 0px;
+  }
+  #placesList .info .tel a {
+    font-size: 14px;
   }
 }
