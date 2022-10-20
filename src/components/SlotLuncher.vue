@@ -208,7 +208,7 @@ export default {
         }
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
         ps.keywordSearch(keyword, placesSearchCB, {
-          radius: 700,
+          radius: 1000,
           location: locPosition,
         });
       }
