@@ -99,8 +99,8 @@
           편의점
         </button>
       </div>
-      <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
+      <div id="slotBtnLayer"><button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button></div>
     <div id="menu_wrap">
       <ul id="placesList"></ul>
       <div id="pagination"></div>

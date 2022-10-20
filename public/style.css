@@ -88,6 +88,20 @@
   margin-right: 0px;
 }
 
+
+#slotBtnLayer {
+  position: fixed;
+  display: flex;
+  background: rgba(97, 97, 97, 0.3);
+  width: 100%;
+  bottom:0%;
+  height: 7vh;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 #SlotBtn {
   width: 30%;
   font-size: 20px;
@@ -570,6 +584,7 @@ ul#placesList li.item {
     line-height: 40px;
     word-break: keep-all;
   }
+
   #SlotBtn {
     width: 300px;
   }
