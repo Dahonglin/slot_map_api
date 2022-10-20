@@ -19,7 +19,7 @@
   z-index: -1;
   top: 0;
   left: 0;
-  height: 25vh;
+  height: 30vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -51,7 +51,7 @@
   font-size: 18px;
   font-family: "Do Hyeon", sans-serif;
   color: #fff;
-  padding-bottom: 8vh;
+  padding-bottom: 13vh;
 }
 
 .nyamnyam {
@@ -542,6 +542,16 @@ ul#placesList li.item {
 
 /* 테블릿 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .TopTitle {
+    height: 40vh;
+  }
+  .TopTitle h1 {
+    padding-top: 2vh;
+  }
+  .TopTitle h3 {
+    padding-bottom: 22vh;
+    line-height: 15px;
+  }
   #map{
     margin-top :18vh;
     height: 400px;
