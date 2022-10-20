@@ -545,9 +545,7 @@ ul#placesList li.item {
   .TopTitle {
     height: 40vh;
     justify-content: flex-start;
-    padding-top: 7vh;
-  }
-  .TopTitle h1 {
+    padding: 7vh 1.5vw 0 1.5vw;
   }
   .TopTitle h3 {
     line-height: 15px;
