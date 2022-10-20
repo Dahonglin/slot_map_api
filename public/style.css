@@ -106,7 +106,7 @@ margin: 20px 0 0px 0;
   background: rgba(97, 97, 97, 0.3);
   width: 100%;
   bottom:0%;
-  height: 7vh;
+  height: 8vh;
   z-index: 1;
   flex-direction: column;
   align-items: center;
@@ -543,15 +543,15 @@ ul#placesList li.item {
 /* 테블릿 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   .TopTitle {
-    height: 40vh;
+    height: 35vh;
     justify-content: flex-start;
-    padding: 7vh 1.5vw 0 1.5vw;
+    padding: 3vh 1.5vw 0 1.5vw;
   }
   .TopTitle h3 {
     line-height: 15px;
   }
   #map{
-    margin-top :25vh;
+    margin-top :23vh;
     height: 400px;
   }
 
