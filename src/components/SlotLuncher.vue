@@ -17,6 +17,7 @@
     </div>
     <div id="map"></div>
     <div id="SearchForm">
+      <div id="guideScript"><span>현재 위치 주변의 식당이 검색 됩니다!</span></div>
       <div id="inputForm">
         <button
           class="btn btn-success"
@@ -100,7 +101,9 @@
         </button>
       </div>
     </div>
-      <div id="slotBtnLayer"><button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button></div>
+    <div id="slotBtnLayer">
+      <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
+    </div>
     <div id="menu_wrap">
       <ul id="placesList"></ul>
       <div id="pagination"></div>
@@ -313,8 +316,7 @@ export default {
           itemStr += "    <span>" + places.address_name + "</span>";
         }
 
-        itemStr +=
-          `  <span class="tel">📞 : <a href='tel:${places.phone}'>${places.phone}</span></div>`;
+        itemStr += `  <span class="tel">📞 : <a href='tel:${places.phone}'>${places.phone}</span></div>`;
 
         el.innerHTML = itemStr;
         el.className = "item";
