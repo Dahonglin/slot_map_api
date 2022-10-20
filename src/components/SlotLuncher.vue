@@ -18,16 +18,86 @@
     <div id="map"></div>
     <div id="SearchForm">
       <div id="inputForm">
-        <button class="btn btn-success" type="button" @click="keyWordSearch('맛집')" value="맛집">맛집</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('한식')" value="한식">한식</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('양식')" value="양식">양식</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('중식')" value="중식">중식</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('일식')" value="일식">일식</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('분식')" value="일식">분식</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('치킨')" value="치킨">치킨</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('피자')" value="피자">피자</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('술집')" value="술집">술집</button>
-        <button class="btn btn-success" type="button" @click="keyWordSearch('편의점')" value="편의점">편의점</button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('맛집')"
+          value="맛집"
+        >
+          맛집
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('한식')"
+          value="한식"
+        >
+          한식
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('양식')"
+          value="양식"
+        >
+          양식
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('중식')"
+          value="중식"
+        >
+          중식
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('일식')"
+          value="일식"
+        >
+          일식
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('분식')"
+          value="일식"
+        >
+          분식
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('치킨')"
+          value="치킨"
+        >
+          치킨
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('피자')"
+          value="피자"
+        >
+          피자
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('술집')"
+          value="술집"
+        >
+          술집
+        </button>
+        <button
+          class="btn btn-success"
+          type="button"
+          @click="keyWordSearch('편의점')"
+          value="편의점"
+        >
+          편의점
+        </button>
       </div>
       <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
@@ -153,9 +223,7 @@ export default {
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-          alert(
-            "검색 결과가 존재하지 않습니다.\n다른 키워드로 검색 해주세요."
-          );
+          alert("검색 결과가 존재하지 않습니다.\n다른 키워드로 검색 해주세요.");
           // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
           window.location.reload(true);
           // return;
@@ -246,7 +314,7 @@ export default {
         }
 
         itemStr +=
-          '  <span class="tel"> 📞 : ' + places.phone + "</span>" + "</div>";
+          `  <span class="tel">📞 : <a href='tel:${places.phone}'>${places.phone}</span></div>`;
 
         el.innerHTML = itemStr;
         el.className = "item";
@@ -275,8 +343,12 @@ export default {
 
         // 메뉴 발사 버튼 클릭 시
         SlotBtn.onclick = function () {
-          modalWindow.className = "modal display";
-          pickMenu.innerText = storePick(storeList);
+          if (storeList.length > 1) {
+            modalWindow.className = "modal display";
+            pickMenu.innerText = storePick(storeList);
+          } else {
+            window.alert("검색 된 식당이 2개 이상일 경우에만 추첨 가능합니다!");
+          }
         };
 
         // 닫기 버튼 클릭 시
@@ -299,13 +371,8 @@ export default {
           prePicked = random;
           // 추첨 완료
           picked = storeList[random];
-        } else {
-          //메뉴가 없거나 2개 미만인 경우
-          window.alert(
-            "발사가 중지 되었습니다! \n메뉴를 추가 하시거나, 첫 리스트로 초기화 해주세요."
-          );
+          return picked.place_name;
         }
-        return picked.place_name;
       }
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
