@@ -519,6 +519,7 @@ ul#placesList li.item {
 @media all and (max-width: 767px) {
   #map{
     margin-top :18vh;
+    height: 400px;
   }
 
   #inputForm {
@@ -573,7 +574,7 @@ ul#placesList li.item {
     width: 300px;
   }
   #menu_wrap {
-    width: 330px;
+    width: 320px;
     min-width: 10%;
   }
 
