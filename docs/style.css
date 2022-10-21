@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
 * {
   list-style: none;
@@ -14,6 +15,43 @@
   text-align: center;
 }
 
+#naviIcon {
+  position: relative;
+  display: flex;
+  top: 2vh;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.naviBtn {
+  width: 80px;
+  height: 80px;
+}
+
+.naviBtn .naviTxt {
+  padding-top: 5px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.bi-flag-fill {
+  font-size: 30px;
+  line-height: 30px;
+  color:#fff;
+}
+
+.bi-house-heart-fill {
+  font-size: 30px;
+  line-height: 30px;
+  color:#fff;
+}
+
+.bi-geo-alt-fill {
+  font-size: 30px;
+  line-height: 30px;
+  color:#fff;
+}
+
 .TopTitle {
   position: absolute;
   z-index: -1;
@@ -24,12 +62,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: linear-gradient(
     to bottom right,
     rgba(136, 0, 255),
     rgb(179, 0, 255)
   );
-  flex-direction: column;
 }
 
 .TopTitle h1 {
@@ -46,11 +84,6 @@
   color: #fff;
   font-size: 22px;
   font-weight: normal;
-}
-.TopTitle h3 {
-  font-size: 18px;
-  font-family: "Do Hyeon", sans-serif;
-  color: #fff;
   padding-bottom: 13vh;
 }
 
@@ -58,20 +91,26 @@
   color: gold;
 }
 
+.nyomnyom {
+  color:blueviolet
+}
+
 #guideScript {
-margin: 20px 0 0px 0;
+  display: flex;
+  margin: 20px 0 0px 0;
+  flex-direction: column;
+  color: #777;
 }
 
 #guideScript span {
   font-size: 20px;
   line-height: 22px;
   font-family: "Do Hyeon", sans-serif;
-  color:#777;
 }
 
 #SearchForm {
   display: flex;
-  width: 80%;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
@@ -82,6 +121,15 @@ margin: 20px 0 0px 0;
   width: 100%;
   margin: 10px 0 20px 0;
   justify-content: center;
+  align-items: center;
+}
+
+#inputForm.desInform {
+  width: 80%;
+}
+
+.input-group.desTit {
+  margin-right: 20px;
 }
 
 #inputForm .btn.btn-success {
@@ -99,13 +147,12 @@ margin: 20px 0 0px 0;
   margin-right: 0px;
 }
 
-
 #slotBtnLayer {
   position: fixed;
   display: flex;
   background: rgba(97, 97, 97, 0.3);
   width: 100%;
-  bottom:0%;
+  bottom: 0%;
   height: 8vh;
   z-index: 1;
   flex-direction: column;
@@ -154,7 +201,7 @@ margin: 20px 0 0px 0;
 #map {
   width: 80%;
   height: 500px;
-  margin-top: 15vh;
+  margin-top: 8vh;
   text-align: center;
   border: 3px solid #ddd;
   border-radius: 20px;
@@ -542,6 +589,12 @@ ul#placesList li.item {
 
 /* 테블릿 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+
+  #naviIcon {
+    position: relative;
+    left: -25%;
+    top: 15vh;
+  }
   .TopTitle {
     height: 35vh;
     justify-content: flex-start;
@@ -550,8 +603,8 @@ ul#placesList li.item {
   .TopTitle h3 {
     line-height: 15px;
   }
-  #map{
-    margin-top :23vh;
+  #map {
+    margin-top: 15vh;
     height: 400px;
   }
 
@@ -592,12 +645,11 @@ ul#placesList li.item {
     font-size: 40px;
     line-height: 40px;
     word-break: keep-all;
-    
   }
 
   #pickMenu {
     position: relative;
-    top:-10px;
+    top: -10px;
     width: 100%;
     height: 100px;
     vertical-align: middle;
@@ -609,7 +661,7 @@ ul#placesList li.item {
     width: 300px;
   }
   #menu_wrap {
-    width: 320px;
+    width: 300px;
     min-width: 10%;
   }
 

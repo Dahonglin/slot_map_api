@@ -2,16 +2,16 @@
   <div id="app" class="container">
     <div id="naviIcon" v-if="page !== 'main'">
       <div class="naviBtn" @click="goMain">
-        <div class="bi bi-flag-fill"></div>
-        <span>메인 페이지</span>
+        <div class="bi bi-house-heart-fill"></div>
+        <div class="naviTxt">메인 페이지</div>
       </div>
       <div class="naviBtn" v-if="page !== 'location'" @click="goLocation">
-        <div class="bi bi-flag-fill"></div>
-        <span>내주변 맛집 뽑기</span>
+        <div class="bi bi-geo-alt-fill"></div>
+        <div class="naviTxt">내주변 맛집 뽑기</div>
       </div>
       <div class="naviBtn" v-if="page !== 'destination'" @click="goDestination">
         <div class="bi bi-flag-fill"></div>
-        <span>목적지 맛집 뽑기</span>
+        <div class="naviTxt">목적지 맛집 뽑기</div>
       </div>
     </div>
     <div v-if="page === 'main'" id="intro">
