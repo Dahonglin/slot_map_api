@@ -15,6 +15,55 @@
   text-align: center;
 }
 
+.mainIcon {
+  display: flex;
+  font-size: 30px;
+}
+
+.mainIcon > .naviBtn {
+  padding-top: 30px;
+  width: 130px;
+}
+
+.mainIcon > .naviBtn > .naviTxt {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: normal;
+}
+
+.mainIcon > .naviBtn > .bi-flag-fill,
+.mainIcon > .naviBtn > .bi-geo-alt-fill {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.mainIcon > .naviBtn > .bi-flag-fill:hover,
+.mainIcon > .naviBtn > .bi-geo-alt-fill:hover {
+  color:gold;
+}
+
+.mainIntro {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    to bottom right,
+    rgba(136, 0, 255),
+    rgb(179, 0, 255)
+  );
+  font-family: "Do Hyeon", sans-serif;
+  color: #fff;
+}
+
+.mainIntro h1 {
+  font-size: 50px;
+}
+
 #naviIcon {
   position: relative;
   display: flex;
@@ -26,31 +75,28 @@
 .naviBtn {
   width: 60px;
   height: 80px;
+  cursor: pointer;
 }
 
 .naviBtn .naviTxt {
   padding-top: 5px;
   font-size: 12px;
-  color: #fff;
   word-break: keep-all;
+  color: #fff;
 }
 
-.bi-flag-fill {
-  font-size: 30px;
-  line-height: 30px;
-  color:#fff;
-}
-
-.bi-house-heart-fill {
-  font-size: 30px;
-  line-height: 30px;
-  color:#fff;
-}
-
+.bi-flag-fill,
+.bi-house-heart-fill,
 .bi-geo-alt-fill {
   font-size: 30px;
   line-height: 30px;
-  color:#fff;
+  color: #fff;
+}
+
+.naviBtn:hover .bi-house-heart-fill,
+.naviBtn:hover .bi-geo-alt-fill,
+.naviBtn:hover .bi-flag-fill{
+  color:gold;
 }
 
 .TopTitle {
@@ -68,6 +114,14 @@
     to bottom right,
     rgba(136, 0, 255),
     rgb(179, 0, 255)
+  );
+}
+
+.TopTitle.blue {
+  background: linear-gradient(
+    to bottom right,
+    rgb(151, 47, 255),
+    rgb(51, 0, 255)
   );
 }
 
@@ -93,7 +147,7 @@
 }
 
 .nyomnyom {
-  color:blueviolet
+  color: blueviolet;
 }
 
 #guideScript {

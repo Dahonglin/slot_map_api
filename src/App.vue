@@ -1,5 +1,24 @@
 <template>
   <div id="app" class="container">
+    <div v-if="page === 'main'" id="intro">
+      <div class="mainIntro">
+        <h1>Slot 🚀 Luncher</h1>
+        <h2><span class="nyamnyam">냠냠로켓</span>의 메뉴 추천!</h2>
+        <h3>어디 맛집을 찾나요?</h3>
+        <!-- <div><button @click="goLocation">내주변 맛집 뽑기</button></div>
+        <div><button @click="goDestination">목적지 맛집 뽑기</button></div> -->
+        <div class="mainIcon">
+          <div class="naviBtn" @click="goLocation">
+            <div class="bi bi-geo-alt-fill"></div>
+            <div class="naviTxt">내주변 맛집 뽑기</div>
+          </div>
+          <div class="naviBtn" @click="goDestination">
+            <div class="bi bi-flag-fill"></div>
+            <div class="naviTxt">목적지 맛집 뽑기</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="naviIcon" v-if="page !== 'main'">
       <div class="naviBtn" @click="goMain">
         <div class="bi bi-house-heart-fill"></div>
@@ -14,14 +33,11 @@
         <div class="naviTxt">목적지 맛집 뽑기</div>
       </div>
     </div>
-    <div v-if="page === 'main'" id="intro">
-      <h1>Slot 🚀 Luncher</h1>
-      <h2>냠냠로켓의 메뉴 추천!</h2>
-      <h3>어디 맛집을 찾나요?</h3>
-      <div><button @click="goLocation">내주변 맛집 뽑기</button></div>
-      <div><button @click="goDestination">목적지 맛집 뽑기</button></div>
-    </div>
-    <div v-if="page !== 'main'" class="TopTitle">
+    <div
+      v-if="page !== 'main'"
+      class="TopTitle"
+      :class="{ blue: page === 'destination' }"
+    >
       <span><h1>Slot 🚀 Luncher</h1></span>
       <span
         ><h2>
@@ -46,8 +62,8 @@ export default {
   },
   data() {
     return {
-      // page: "main",
-      page: "destination",
+      page: "main",
+      // page: "destination",
     };
   },
   methods: {
