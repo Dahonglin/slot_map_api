@@ -24,7 +24,7 @@
 }
 
 .naviBtn {
-  width: 80px;
+  width: 60px;
   height: 80px;
 }
 
@@ -32,6 +32,7 @@
   padding-top: 5px;
   font-size: 12px;
   color: #fff;
+  word-break: keep-all;
 }
 
 .bi-flag-fill {
