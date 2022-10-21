@@ -600,6 +600,11 @@ ul#placesList li.item {
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .input-group.desTit {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
   #inputForm .btn.btn-success {
     margin: 5px;
   }
