@@ -17,7 +17,10 @@
     </div>
     <div id="map"></div>
     <div id="SearchForm">
-      <div id="guideScript"><span>현재 위치 주변의 식당이 검색 됩니다!</span></div>
+      <div id="guideScript">
+        <span><span class="nyomnyom">현재 위치</span>를 기준으로 주변 음식점이 검색 됩니다.</span>
+        <span>각 메뉴 버튼을 눌러 <span class="nyomnyom">음식점을 검색</span> 해보세요!</span>
+        </div>
       <div id="inputForm">
         <button
           class="btn btn-success"
