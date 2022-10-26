@@ -1,18 +1,23 @@
 # Slot🚀Luncher - 점심 메뉴 추첨기 (v2.0)
 ### _**🎰 Lunch menu slot selector**_  
+Click >> **[Slot🚀luncher v2.0](https://dahonglin.github.io/slot_map_api/)** << <br>
 당신의 주변 혹은 원하는 곳의 맛집을 찾아 대신 선택해드립니다!
 
 <img alt="Vue.JS" src ="https://img.shields.io/badge/vue.Js-4FC08D.svg?&style=for-the-badge&logo=Vue.js&logoColor=white"/>  <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScriipt-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="HTML5" src ="https://img.shields.io/badge/HTML5-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/CSS3-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/> <img alt="Css" src ="https://img.shields.io/badge/Bootstrap-7952B3.svg?&style=for-the-badge&logo=Bootstrap&logoColor=white"/>   
 <br>
 
 
+![image](https://raw.githubusercontent.com/Dahonglin/slot_map_api/master/mdimg/guide_gif.gif)
+
+
 ### 🔖 목차
-* [프로젝트 개발 이유](#프로젝트-개발-이유)
-* [사용 환경](#사용-환경)
+* [프로젝트 개발 이유](#-프로젝트-개발-이유)
+* [사용 환경](#-사용-환경)
 * 사용 방법
   * [내주변 맛집 뽑기](#1️⃣-내주변-맛집-뽑기)
   * [목적지 맛집 뽑기](#2️⃣-목적지-맛집-뽑기)
-* [개발 사항](#개발-사항)
+* [개발 사항](#-개발-사항)
+* [개발 후기](#-개발-후기)
 
 <br>
 
@@ -20,7 +25,7 @@
 
 <br>
 
-### ❓프로젝트 개발 이유
+### ❓ 프로젝트 개발 이유
 > **[v1.0의 슬롯런처](https://dahonglin.github.io/SlotLuncher/)** 개발 후 사용하던 지인들에게 <br>
 > _'내 주변 맛집이나 원하는 지역 맛집에서 뽑아 주면 좋겠어!'_ <br>
 > 라는 ~~필사적인~~ 정성어린 피드백을 받았다. <br>
