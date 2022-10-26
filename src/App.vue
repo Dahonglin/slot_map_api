@@ -5,8 +5,6 @@
         <h1>Slot 🚀 Luncher</h1>
         <h2><span class="nyamnyam">냠냠로켓</span>의 메뉴 추천!</h2>
         <h3>어디 맛집을 찾나요?</h3>
-        <!-- <div><button @click="goLocation">내주변 맛집 뽑기</button></div>
-        <div><button @click="goDestination">목적지 맛집 뽑기</button></div> -->
         <div class="mainIcon">
           <div class="naviBtn" @click="goLocation">
             <div class="bi bi-geo-alt-fill"></div>
@@ -63,21 +61,17 @@ export default {
   data() {
     return {
       page: "main",
-      // page: "destination",
     };
   },
   methods: {
     goMain() {
       this.page = "main";
-      console.log("메인으로", this.page);
     },
     goLocation() {
       this.page = "location";
-      console.log("주변검색으로", this.page);
     },
     goDestination() {
       this.page = "destination";
-      console.log("목적지검색으로", this.page);
     },
     TopTitle() {},
   },

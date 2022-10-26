@@ -15,7 +15,9 @@
         </div>
       </div>
     </div>
+    <!-- 맵 영역 -->
     <div id="map"></div>
+    <!-- 입력 폼 영역 -->
     <div id="SearchForm">
       <div id="guideScript">
         <span
@@ -118,9 +120,11 @@
         </button>
       </div>
     </div>
+    <!-- 추첨 버튼 레이어 -->
     <div id="slotBtnLayer">
       <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
+    <!-- 식당 목록 영역 -->
     <div id="menu_wrap">
       <ul id="placesList"></ul>
       <div id="pagination"></div>
@@ -138,6 +142,7 @@ export default {
   },
   components: {},
   mounted() {
+    // 카카오 api 스크립트 로드
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {
@@ -174,6 +179,7 @@ export default {
           });
           marker.setMap(map);
         });
+        // 기본 키워드 '맛집' 세팅
         this.keyWordSearch("맛집");
       } else {
         // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
@@ -184,11 +190,11 @@ export default {
         });
         alert("위치 정보를 확인할 수 없습니다.");
         marker.setMap(map);
+        // 기본 키워드 '맛집' 세팅
         this.keyWordSearch("맛집");
       }
     },
     keyWordSearch(val) {
-      console.log("눌림", val);
       let markers = [];
       let mapContainer = document.getElementById("map"); // 지도를 표시할 div
       let mapOption = {
@@ -197,7 +203,6 @@ export default {
       };
       // 지도를 생성합니다
       let map = new kakao.maps.Map(mapContainer, mapOption);
-      // let keyWordTemp = this.keyWord;
       let keyWordTemp = val;
 
       // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
@@ -209,6 +214,7 @@ export default {
           var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 
           // 키워드로 장소를 검색합니다
+          // 입력 받은 키워드 + 현재 위치 전달
           searchPlaces(keyWordTemp, locPosition);
         });
       } else {
@@ -222,10 +228,6 @@ export default {
 
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces(keyword, locPosition) {
-        if (!keyword.replace(/^\s+|\s+$/g, "")) {
-          alert("키워드를 입력해주세요!");
-          return false;
-        }
         // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
         ps.keywordSearch(keyword, placesSearchCB, {
           radius: 1000,
@@ -239,20 +241,18 @@ export default {
           // 정상적으로 검색이 완료됐으면
           // 검색 목록과 마커를 표출합니다
           displayPlaces(data);
-          storeListSave(data);
           // 페이지 번호를 표출합니다
           displayPagination(pagination);
+          // 모달창에 검색 결과에 해당하는 목록 생성
+          storeListSave(data);
         } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
           alert("검색 결과가 존재하지 않습니다.\n다른 키워드로 검색 해주세요.");
-          // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
+          // 해당 키워드로 검색 실패 시 새로고침으로 리셋
           window.location.reload(true);
-          // return;
-          displayPlaces(data);
         } else if (status === kakao.maps.services.Status.ERROR) {
           alert("검색 결과 중 오류가 발생했습니다.");
-          // 하얀 화면이 생기면서 깨지는 현상 발견... 임시로 새로고침
+          // 해당 키워드로 검색 실패 시 새로고침으로 리셋
           window.location.reload(true);
-          // return;
         }
       }
 
@@ -262,7 +262,6 @@ export default {
         let menuEl = document.getElementById("menu_wrap");
         let fragment = document.createDocumentFragment();
         let bounds = new kakao.maps.LatLngBounds();
-        let storeList = [];
 
         // 검색 결과 목록에 추가된 항목들을 제거합니다
         removeAllChildNods(listEl);
@@ -278,7 +277,6 @@ export default {
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
           bounds.extend(placePosition);
-          storeList.push(places[i].place_name); // eslint-disable-line no-unused-vars
           // 마커와 검색결과 항목에 mouseover 했을때
           // 해당 장소에 인포윈도우에 장소명을 표시합니다
           // mouseout 했을 때는 인포윈도우를 닫습니다

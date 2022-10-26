@@ -15,7 +15,9 @@
         </div>
       </div>
     </div>
+    <!-- 맵 영역 -->
     <div id="map"></div>
+    <!-- 입력 폼 영역 -->
     <div id="SearchForm">
       <div id="guideScript">
         <span
@@ -52,9 +54,11 @@
         </div>
       </div>
     </div>
+    <!-- 추첨 버튼 레이어 -->
     <div id="slotBtnLayer">
       <button id="SlotBtn" class="btn btn-danger">🪐🚀 Go Lunch! 🚀🌌</button>
     </div>
+    <!-- 식당 목록 영역 -->
     <div id="menu_wrap">
       <ul id="placesList"></ul>
       <div id="pagination"></div>
@@ -86,6 +90,7 @@ export default {
   },
   components: {},
   mounted() {
+    // 카카오 api 스크립트 로드
     if (window.kakao && window.kakao.maps) {
       this.initMap();
     } else {
@@ -111,20 +116,14 @@ export default {
         position: map.getCenter(), // 지도의 중심좌표
       });
       marker.setMap(map);
+      // 기본 설정 강남 + 맛집으로 세팅
       this.keyWordSearch("강남", "맛집");
+      // 선택 메뉴 목록 생성
       this.selectedTab();
     },
-    addScript() {
-      const script = document.createElement("script");
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey1979f702d77ea0046b74ea7bdfbea8df&autoload=false&libraries=services";
-      document.head.appendChild(script);
-    },
-
     keyWordSearch(Keyword, menu) {
-      console.log("넘어감", Keyword, menu);
       var markers = [];
+      // 입력된 키워드를 한개의 문장으로 조합
       let userKeyword = `${Keyword} ${menu}`;
 
       var mapContainer = document.getElementById("map"); // 지도를 표시할 div
@@ -147,10 +146,9 @@ export default {
 
       // 키워드 검색을 요청하는 함수입니다
       function searchPlaces(userKeyword) {
-        // var keyword = '이태원 맛집'
 
         if (!userKeyword.replace(/^\s+|\s+$/g, "")) {
-          alert("키워드를 입력해주세요!");
+          alert("목적지를 입력해주세요!");
           return false;
         }
 
@@ -182,7 +180,6 @@ export default {
         var menuEl = document.getElementById("menu_wrap");
         var fragment = document.createDocumentFragment();
         var bounds = new kakao.maps.LatLngBounds();
-        var listStr = ""; // eslint-disable-line no-unused-vars
 
         // 검색 결과 목록에 추가된 항목들을 제거합니다
         removeAllChildNods(listEl);
@@ -318,8 +315,6 @@ export default {
 
       // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
       function addMarker(position, idx) {
-        // eslint-disable-line no-unused-vars
-
         var imageSrc = "./marker_number_rocket.png"; // 마커 이미지 url, 스프라이트 이미지를 씁니다
         var imageSize = new kakao.maps.Size(36, 37); // 마커 이미지의 크기
         var imgOptions = {
@@ -399,7 +394,6 @@ export default {
       }
     },
     selectedTab() {
-      console.log("셀렉트 생성됨");
       let tabs = document.querySelector(".form-select");
       let temp = "";
       temp = `<option selected disabled value="">검색할 메뉴를 선택해주세요!</option>`;
